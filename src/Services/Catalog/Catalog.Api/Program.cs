@@ -1,5 +1,8 @@
 using Catalog.Persistance.Database;
+using Catalog.Service.Queries;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +16,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(opts =>
         x => x.MigrationsHistoryTable("__EFMigrationsHistory", "Catalog")
         )
     );
+builder.Services.AddTransient<IProductQueryService, ProductQueryService>();
+builder.Services.AddMediatR(Assembly.Load("Catalog.Service.EventHandlers"));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
