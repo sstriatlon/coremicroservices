@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\src\Services\Catalog\Catalog.Common\Catalog.Common\Catalog.Common.csproj" />
     <ProjectReference Include="..\src\Services\Catalog\Catalog.Persistance.Database\Catalog.Persistance.Database.csproj" />
   </ItemGroup>
 
